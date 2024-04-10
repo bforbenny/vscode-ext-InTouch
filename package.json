@@ -30,9 +30,7 @@
     "Invensys",
     "Wonderware",
     "Aveva",
-    "formatter",
-    "theme",
-    "dark"
+    "formatter"
   ],
   "contributes": {
     "languages": [

@@ -1,33 +1,30 @@
 # vscode-ext-InTouch Readme
 
-VSCode Formatter extension for InTouch is an open-source VSCode (**not official**).
-
-It provides:
+VSCode Formatter extension for InTouch is an open-source VSCode (**not official**), providing:
 
 - Syntax Highlighting
 - Snippets
 
 ## Installation
 
-- Install from Github:
+### Install from Github
 
-  - Copy or clone all into
+```powershell
+cd ~\.vscode\extensions
+git clone "https://github.com/bforbenny/vscode-ext-InTouch.git"
+npm i
 
-    ```powershell
-    cd ~\.vscode\extensions
-    git clone "https://github.com/bforbenny/vscode-ext-InTouch.git"
-    npm i
+# Restart vs-code after installation, to apply new settings
+```
 
-    # Restart vs-code after installation, to apply new settings
-    ```
+### Install from `VSIX`
 
-- Install from `VSIX`
-  - Download releases from github page
-  - From VSCode, open `extensions` or `Ctrl+Shift+X`
-  - Click on `...` or `More actions`
-  - Choose `Install from VSIX...`
+- Download [latest release](https://github.com/bforbenny/vscode-ext-InTouch/releases/latest)
+- From VSCode, open `extensions` or `Ctrl+Shift+X`
+- Click on `...` or `More actions`
+- Choose `Install from VSIX...`
 
-## Compiling
+## Buiding
 
 ```powershell
 # Make sure node is installed
@@ -59,6 +56,10 @@ npm list -g --depth=0
 ## How to Use
 
 > Save your code as `.vi` or `.vbi` for automatic language recognition
+
+> Change `plaintext` to `intouch` for manual language switching
+
+> Type in any snippet and press enter
 
 ## Credits
 
