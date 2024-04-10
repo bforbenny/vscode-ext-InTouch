@@ -1,0 +1,537 @@
+{
+  "$schema": "./schema.json",
+  "name": "Intouch",
+  "fileTypes": [".vbi"],
+  "scopeName": "source.vbi",
+  "comment": "Modified from the original Scott Spences (VSCode VBA) [https://github.com/spences10/vscode-vba#syntax-highlighting] and (OCL) [https://github.com/martinring/vscode-ocl]",
+  "foldingStartMarker": "(?i:(THEN|while|For|{region|(^\\s*//\\s*#?region\\b))(\\s*.*$|\\b))",
+  "foldingStopMarker": "(?i:({endregion|endif;|(^\\s*//\\s*#?endregion\\b))(\\s*.*$|\\b))",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#keywords" },
+    { "include": "#dotfields" },
+    { "include": "#strings" },
+    { "include": "#HermesKeywords" },
+    { "include": "#several" }
+  ],
+  "repository": {
+    "MISC-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {},
+
+    "keywords": {
+      "patterns": [
+        {
+          "match": "(.*\\(\\s*)(?:.*)(\\))(?:\\s*\\{)",
+          "name": "entity.name.function"
+        },
+        {
+          "match": "\\}$",
+          "name": "entity.name.function"
+        },
+        {
+          "name": "keyword.control",
+          "match": "(?i:\\b(MOD|AND|NOT|IS|OR|XOR|Abs|TO|SHL|SHR)\\b)"
+        },
+        {
+          "name": "keyword.datatype",
+          "match": "(?i:(\\b(discrete|integer|real|message)\\b))",
+          "comment": "Intouch Variablentypes"
+        },
+        {
+          "match": "(?i:\\b(AS|IF|ENDIF|ELSE|WHILE|FOR|NEXT|DIM|THEN|EXIT|EACH|STEP|IN|RETURN|CALL)\\b)",
+          "name": "keyword",
+          "comment": "vbi Regular Keywords"
+        },
+
+        {
+          "match": "(?i:\\s*\\b(Ack|AddPermission|almAckAll|almAckDisplay|almAckGroup|almAckPriority|almAckRecent|almAckSelect|almAckSelectedGroup|almAckSelectedPriority|almAckSelectedTag|almAckTag|almDefQuery|almMoveWindow|almQuery|almSelectAll|almSelectGroup|almSelectionCount|almSelectItem|almSelectPriority|almSelectTag|almSetQueryByName|almShowStats|almSuppressAll|almSuppressDisplay|almSuppressGroup|almSuppressPriority|almSuppressRetain|almSuppressSelected|almSuppressSelectedGroup|almSuppressSelectedPriority|almSuppressSelectedTag|almSuppressTag|almUnselectAll|almUnsuppressAll|AnnotateLayout|APUFindAlarmGroupInstance|APUFindFileInstance|APUFindPrinterInstance|APUGetAlarmGroupText|APUGetConfigurationFilePath|APUGetInstanceCount|APUGetPrinterJobCount|APUGetPrinterName|APUGetPrinterStatus|APUGetQueryAlarmState|APUGetQueryFromPriority|APUGetQueryProcessingState|APUGetQueryToPriority|APUIsInstanceUsed|APUSetAlarmGroupText|APUSetQueryAlarmState|APUSetQueryFromPriority|APUSetQueryToPriority|APUSetTimeoutValues|APUStartInstance|APUStartQuery|APUStopInstance|APUStopQuery|APUTranslateErrorCode)\\b\\s*)",
+          "name": "keyword.function",
+          "comment": "IT-functions Misc Teil 1"
+        },
+        {
+          "match": "(?i:\\s*\\b(AttemptInvisibleLogon|ChangePassword|ChangeWindowColor|CreateFilenameFromDate|DateTimeGMT|DialogStringEntry|DialogValueEntry|EnableDisableKeys|FilePrint|FileSelect|GetAccountStatus|GetDiscOffMsg|GetDiscOnMsg|GetNodeName|GetPropertyD|GetPropertyI|GetPropertyM|GetWindowName|Hide|HideSelf|HTGetLastError|HTGetPenName|HTGetTimeAtScooter|HTGetTimeStringAtScooter|HTGetValue|HTGetValueAtScooter|HTGetValueAtZone|HTScrollLeft|HTScrollRight|HTSelectTag|HTSetPenName|HTUpdateToCurrentTime|HTZoomIn|HTZoomOut|InfoAppStatus|InfoAppTitleExpand|InfoWinEnv|InTouchVersion|InvisibleVerifyCredentials|IODisableFailover|IOForceFailover|IOGetAccessNameStatus|IOGetActiveSourceName|IOGetApplication|IOGetNode|IOGetTopic|IOReinitAccessName|IOReinitialize|IOSetAccessName|IOSetItem|IOSetRemoteReferences|IOStartUninitConversations|IsAnyAsyncFunctionBusy|IsAssignedRole|ITXAppActivate|ITXCheckDate|ITXConvertDate|ITXConvertDateString|ITXConvertDateTime|ITXConvertDateTimeString)\\b\\s*)",
+          "name": "keyword.function",
+          "comment": "IT-functions Misc Teil 2"
+        },
+        {
+          "match": "(?i:\\s*\\b(ITXCreateDate|ITXCreateDateTime|ITXCreateDateTimeUTC|ITXShowHelpByNumber|ITXShowHelpByString|LaunchTagViewer|LogMessage|Logoff|LogonCurrentUser|MessageBox|MoveWindow|NumberRecipes|OpenWindowsList|PlaySound|PostLogonDialog|PrintHT|PrintScreen|PrintWindow|ptGetTrendType|ptLoadTrendCfg|ptPanCurrentPen|ptPanTime|ptPauseTrend|ptRefreshTrend|ptSaveTrendCfg|ptSetCurrentPen|ptSetPen|ptSetPenEx|ptSetTimeAxis|ptSetTimeAxisToCurrent|ptSetTrend|ptSetTrendType|ptZoomCurrentPen|ptZoomTime|PwdUserAdd|PwdUserDelete|PwdUserEdit|PwdUserGetIndex|PwdUserRead|QueryGroupMembership|ReloadWindowViewer|RestartWindowViewer|SendKeys|SendMail|SendSMTPMail|SendSMTPMailwAttachment|SetPropertyD|SetPropertyI|SetPropertyM|SetTagEU|SetWindowPrinter|Show|ShowAt|ShowHome|ShowTopLeftAt|StringCompareEncrypted|SwitchDisplayLanguage|SysBeep|SystemIsNT|TagExists|TseGetClientId|TseGetClientNodeName|TseQueryRunningOnClient|TseQueryRunningOnConsole|UTCDateTime|wcAddItem|wcClear|wcDeleteItem|wcDeleteSelection|wcErrorMessage|wcFindItem|wcGetItem|wcGetItemData|wcInsertItem|wcLoadList|wcLoadText|wcSaveList|wcSaveText|wcSetItemData|WindowState|WWAlwaysOnTop|WWBeep32|WWCntx32|WWContext|WWControl|WWControlPanel|WWDosCommand|WWExecute|WWIsDayLightSaving|WWMoveWindow|WWMultiMonitorNode|WWPoke|WWPrimaryMonitorHeight|WWPrimaryMonitorWidth|WWRequest|WWStartApp|WWVirtualMonitorHeight|WWVirtualMonitorWidth)\\b\\s*)",
+          "name": "keyword.function",
+          "comment": "IT-functions Misc Teil 3"
+        },
+        {
+          "match": "(?i:\\s*\\b(Abs|ArcCos|ArcSin|ArcTan|Clip_cursor|ConvertTemp|Cos|Exp|GeoArea|GeoEqualSideArea|GeoVolume|GetCursorPosition|Hide_cursor|Int|Log|LogN|MetFromStdFluid|MetFromStdLinear|MetFromStdWeight|Pi|Restore_clip|Round|SetCursorPosition|Sgn|Show_cursor|Sin|Sqrt|StdFromMetFluid|StdFromMetLinear|StdFromMetWeight|Tan|Trunc)\\b\\s*)",
+          "name": "keyword",
+          "comment": "IT-functions-Math"
+        },
+        {
+          "match": "(?i:\\s*\\b(ActivateApp|CreateFilenameFromDate|FileCopy|FileDelete|FileMove|FileReadFields|FileReadMessage|FileWriteFields|FileWriteMessage|GetDiscOffMsg|GetDiscOnMsg|InfoAppActive|InfoAppTitle|InfoDisk|InfoDosEnv|InfoFile|InfoInTouchAppDir|InfoResources|INIReadInteger|INIReadString|INIWriteInteger|INIWriteString|IORRGetItemActiveState|IORRGetSystemInfo|IORRWriteState|IsNodeAppRunning|ITXCreateDirectory|ITXCreateSubDirectory|ITXGetProfileInt|ITXGetProfileString|ITXPutProfileInt|ITXPutProfileString|ITXRemoveDirectory|ITXRemoveSubDirectory|ITXResizeApplication|ITXSetLocalTime|ITXSetSystemDate|ITXSetSystemTime|ITXStartAppInDirectory|ITXWindowCtrl|SetTagEU|StartApp|SysBeep|SystemIsNT|TagExists|WWBeep32|WWCntx32|WWGetServiceExeName|WWGetServiceName|WWGetServiceStatus|WWServiceControl|WWServiceControlError|WWShutDownWin95|WWShutDownWinNT40)\\b\\s*)",
+          "name": "markup.heading",
+          "comment": "IT-functions-System"
+        },
+        {
+          "match": "(?i:\\d{1,2}\\/\\d{2}\\/\\d{2}\\s+\\d{1,2}.\\d{2}\\s+(AM|PM))",
+          "name": "constant.numeric",
+          "comment": "Printed On: `4/07/24 7:21 PM`"
+        },
+        {
+          "match": "(?i:\\s*\\b(Application|Condition|Data Change|ActiveX|QuickFunction)(.Script.|:|s)(?!Type))",
+          "name": "markup.heading",
+          "comment": "IT-functions-printout"
+        },
+        {
+          "match": "(?i:\\s*\\b(Script)\\s+(on|while).*\\b\\s*)",
+          "name": "markup.heading",
+          "comment": "IT-functions-printout2"
+        },
+
+        {
+          "match": "(?i:\\s*\\b(Window Report for))",
+          "name": "markup.heading",
+          "comment": "IT-window-printout"
+        },
+        {
+          "match": "Link:",
+          "name": "entity.name.function"
+        },
+        {
+          "match": "(?i:\\s*(Object (Type|Name):))",
+          "name": "entity.name.class"
+        },
+        {
+          "match": "(?i:\\s*\\b(NULL|EOF|True|False)\\b)",
+          "name": "keyword.constant"
+        },
+
+        {
+          "match": "(?i:\\s*\\b(DText|StringASCII|StringChar|StringCompare|StringCompareNoCase|StringFromGMTTimeToLocal|StringFromIntg|StringFromReal|StringFromTime|StringFromTimeLocal|StringInString|StringLeft|StringLen|StringLower|StringMid|StringReplace|StringRight|StringSpace|StringTest|StringToIntg|StringToReal|StringTrim|StringUpper|Text|wwStringFromTime)\\b\\s*)",
+
+          "name": "keyword.function",
+          "comment": "Intouch String functions"
+        },
+        {
+          "match": "(?i:\\s*\\b(RecipeDelete|RecipeGetMessage|RecipeLoad|RecipeSave|RecipeSelectNextRecipe|RecipeSelectPreviousRecipe|RecipeSelectRecipe|RecipeSelectUnit|SPCEXSetDataset|SPCEXSetEndDate|SPCEXSetEndTime|SPCEXSetOutputFile|SPCEXSetProduct|SPCEXSetStartDate|SPCEXSetStartTime|SQLAppendStatement|SQLClearParam|SQLClearStatement|SQLClearTable|SQLCommit|SQLConnect|SQLCreateTable|SQLDelete|SQLDisconnect|SQLDropTable|SQLEnd|SQLErrorMsg|SQLExecute|SQLFirst|SQLGetRecord|SQLInsert|SQLInsertEnd|SQLInsertExecute|SQLInsertPrepare|SQLLast|SQLLoadStatement|SQLManageDSN|SQLNext|SQLNumRows|SQLPrepareStatement|SQLPrev|SQLRollback|SQLSelect|SQLSetParamChar|SQLSetParamDate|SQLSetParamDateTime|SQLSetParamDecimal|SQLSetParamFloat|SQLSetParamInt|SQLSetParamLong|SQLSetParamNull|SQLSetParamTime|SQLSetStatement|SQLTransact|SQLUpdate|SQLUpdateCurrent)\\b\\s*)",
+          "name": "keyword.function",
+          "comment": "Intouch AddOns functions"
+        },
+        {
+          "match": "\\?.:\\w*",
+          "name": "invalid"
+        }
+      ]
+    },
+
+    "dotfields": {
+      "patterns": [
+        {
+          "match": "(?i:([\\.]{1}(Comment|Name|ReferenceComplete|Reference|AlarmComment|EngUnits|Value))\\b)",
+          "name": "variable.parameter.vbi",
+          "matchOld": "(((?i:(\\.Comment|\\.Name|\\.Reference|\\.AlarmComment|\\.EngUnits|\\.ReferenceComplete|\\.Value)))\\b)",
+          "comment": "Intouch Dotfields"
+        },
+        {
+          "match": "(?i:([\\.]{1}(SQLString|Caption|ConnectionString|GetRowNumber|GetRowColumnValue|Execute|Disconnect|SetColumnWidth))\\b)",
+          "matchOld": "(((?i:(\\.GetRowNumber|\\.GetRowColumnValue|\\.Execute|\\.Disconnect|\\.SetColumnWidth)))\\b)",
+          "name": "variable.parameter.vbi",
+          "comment": "SQL Dotfields"
+        },
+        {
+          "match": "(((?i:(\\.DisplayMode|\\.ChartLength|\\.MinRange|\\.MaxRange|HTUpdateToCurrentTime)))\\b)",
+          "name": "variable.parameter.vbi",
+          "comment": "Trend Dotfields"
+        },
+        {
+          "match": "(?i:(\\$)\\w*)",
+          "name": "variable.parameter.dotfield.vbi",
+          "comment": "Systemvariable '$' are like dotfields..."
+        },
+        {
+          "match": "(?i:(#)\\w*)",
+          "name": "variable.parameter.trend.vbi",
+          "comment": "Systemvariable '#' are trend..."
+        },
+        {
+          "comment": "all other dot.callsFunctions",
+          "match": "\\b\\s*(\\.|->)\\s*([\\p{L}_$][\\p{L}_$0-9]*)\\s*\\(",
+          "captures": {
+            "2": { "name": "variable.parameter.vbi" }
+          }
+        }
+      ]
+    },
+
+    "HermesKeywords": {
+      "patterns": [
+        {
+          "match": "(?i:\\b(SYS_|MA_|SMEL_|HER_)\\w*)",
+          "name": "variable.other",
+          "comment": "Systemvariablen (Hermes - OWN)"
+        },
+
+        {
+          "match": "(?i:\\s*\\b(GetSplittByIndex|HerGATEWAYanzeigeAktualisieren|HerGATEWAYtriggerFreigabe|HerGATEWAYueberwachen|SetReferenceBool|SetReferenceByte|SetReferenceDINT|SetReferenceDINTs|SetReferenceMerkerByte|SetReferenceReal|SetReferenceString|SetReferenceWord|SetVarInputBoolsch|SetVarToggleBoolsch|BDEDatenLesen|BDEDatenSpeichern|BDEDatenSuchen|BDESchichtSchreiben|BDESchichtwerteDatenOK|BDESchichtwerteZuweisen|BDETageswerteDatenOK|BDETageswerteSchreiben|BDETageswerteZuweisen|BZBetriebsstunden|BZZaehlerAbfragen|ExterneModuleUeberwachen|FUWerte|GetSplittByIndex|HerBACKUP|HerProViewStart|HideAllPLS|KonfigLesen|KonfigSpeichern|QFFilter|QFFilterRegler15Schritt|QFLuftwerte|QFRinne|SessionUserInfoAkt|Sollwertaenderung|StatusExtApp|StatusleistenInfofelder|SWReal|wwalmdbtrigger|xAnlagenConfig|xBZVZSettings|xGatawaySettings|xHerGATEWAYSettings|xLoggingConfig|xSetDateiPfade|xSetSQLConfig|xSetTSStation|xSetUhrzeitserver)\\b\\s*)",
+          "name": "keyword.other",
+          "comment": "Hermes Own functions 1"
+        },
+        {
+          "match": "(?i:\\s*\\b(xSTATION9BiosName|xSTATION8BiosName|xSTATION7BiosName|xSTATION6BiosName|xSTATION5BiosName|xSTATION4BiosName|xSTATION3BiosName|xSTATION2BiosName|xSTATION1BiosName)\\b\\s*)",
+          "name": "support.function",
+          "comment": "Hermes Own functions 2"
+        }
+      ]
+    },
+
+    "constraints": {
+      "patterns": [
+        {
+          "match": "\\b(pre|post|inv)(\\s+([\\p{L}_$][\\p{L}_$0-9]*)\\s*:)?",
+          "captures": {
+            "1": { "name": "entity.name" },
+            "3": { "name": "entity.name.section" }
+          }
+        }
+      ]
+    },
+
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double.vbi"
+        }
+      ]
+    },
+
+    "comments-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {},
+    "comments": {
+      "patterns": [
+        { "include": "#line_comment_curly" },
+        { "include": "#block_comment" },
+        { "include": "#line_comment_new" },
+        { "include": "#line_comment_printout" },
+        { "include": "#line_comment" }
+      ]
+    },
+    "line_comment_curly": {
+      "name": "comment",
+      "begin": "(?<!\\)\\s{3})(\\{)",
+      "end": "(\\})"
+    },
+
+    "line_comment_printout": {
+      "name": "comment",
+      "begin": "^\\s*(Comment:)",
+      "end": ".*$"
+    },
+
+    "line_comment_new": {
+      "name": "comment",
+      "begin": "'",
+      "end": ".*$"
+    },
+
+    "several-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {},
+    "several": {
+      "patterns": [
+        { "include": "#number_literal" },
+        { "include": "#operator" },
+        { "include": "#comma" },
+        { "include": "#assignment_operator" },
+        { "include": "#square_brackets" },
+        { "include": "#empty_square_brackets" },
+        { "include": "#semicolon" },
+        { "include": "#block" }
+      ]
+    },
+
+    "number_literal": {
+      "match": "(?<!\\w)\\.?\\d(?:(?:[0-9a-zA-Z_\\.]|')|(?<=[eEpP])[+-])*",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "begin": "(?=.)",
+              "end": "$|(?=\\\\end\\{minted\\})",
+              "patterns": [
+                {
+                  "match": "(\\G0[xX])([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?((?:(?<=[0-9a-fA-F])\\.|\\.(?=[0-9a-fA-F])))([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?((?<!')([pP])(\\+?)(\\-?)((?:[0-9](?:[0-9]|(?:(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)))?([lLfF](?!\\w))?((?:\\w(?<![0-9a-fA-FpP])\\w*)?$)",
+                  "captures": {
+                    "1": { "name": "keyword.other.unit.hexadecimal.vbi" },
+                    "2": {
+                      "name": "constant.numeric.hexadecimal.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "3": {
+                      "name": "punctuation.separator.constant.numeric.vbi"
+                    },
+                    "4": { "name": "constant.numeric.hexadecimal.vbi" },
+                    "5": {
+                      "name": "constant.numeric.hexadecimal.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "6": {
+                      "name": "punctuation.separator.constant.numeric.vbi"
+                    },
+                    "8": {
+                      "name": "keyword.other.unit.exponent.hexadecimal.vbi"
+                    },
+                    "9": {
+                      "name": "keyword.operator.plus.exponent.hexadecimal.vbi"
+                    },
+                    "10": {
+                      "name": "keyword.operator.minus.exponent.hexadecimal.vbi"
+                    },
+                    "11": {
+                      "name": "constant.numeric.exponent.hexadecimal.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "12": {
+                      "name": "keyword.other.unit.suffix.floating-point.vbi"
+                    },
+                    "13": { "name": "keyword.other.unit.user-defined.vbi" }
+                  }
+                },
+                {
+                  "match": "(\\G(?=[0-9.])(?!0[xXbB]))([0-9](?:[0-9]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?((?:(?<=[0-9])\\.|\\.(?=[0-9])))([0-9](?:[0-9]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?((?<!')([eE])(\\+?)(\\-?)((?:[0-9](?:[0-9]|(?:(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)))?([lLfF](?!\\w))?((?:\\w(?<![0-9eE])\\w*)?$)",
+                  "captures": {
+                    "2": {
+                      "name": "constant.numeric.decimal.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "3": {
+                      "name": "punctuation.separator.constant.numeric.vbi"
+                    },
+                    "4": { "name": "constant.numeric.decimal.point.vbi" },
+                    "5": {
+                      "name": "constant.numeric.decimal.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "6": {
+                      "name": "punctuation.separator.constant.numeric.vbi"
+                    },
+                    "8": { "name": "keyword.other.unit.exponent.decimal.vbi" },
+                    "9": {
+                      "name": "keyword.operator.plus.exponent.decimal.vbi"
+                    },
+                    "10": {
+                      "name": "keyword.operator.minus.exponent.decimal.vbi"
+                    },
+                    "11": {
+                      "name": "constant.numeric.exponent.decimal.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "12": {
+                      "name": "keyword.other.unit.suffix.floating-point.vbi"
+                    },
+                    "13": { "name": "keyword.other.unit.user-defined.vbi" }
+                  }
+                },
+                {
+                  "match": "(\\G0[bB])([01](?:[01]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)((?:(?:(?:(?:(?:[uU]|[uU]ll?)|[uU]LL?)|ll?[uU]?)|LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9])\\w*)?$)",
+                  "captures": {
+                    "1": { "name": "keyword.other.unit.binary.vbi" },
+                    "2": {
+                      "name": "constant.numeric.binary.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "3": {
+                      "name": "punctuation.separator.constant.numeric.vbi"
+                    },
+                    "4": { "name": "keyword.other.unit.suffix.integer.vbi" },
+                    "5": { "name": "keyword.other.unit.user-defined.vbi" }
+                  }
+                },
+                {
+                  "match": "(\\G0)((?:[0-7]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))+)((?:(?:(?:(?:(?:[uU]|[uU]ll?)|[uU]LL?)|ll?[uU]?)|LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9])\\w*)?$)",
+                  "captures": {
+                    "1": { "name": "keyword.other.unit.octal.vbi" },
+                    "2": {
+                      "name": "constant.numeric.octal.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "3": {
+                      "name": "punctuation.separator.constant.numeric.vbi"
+                    },
+                    "4": { "name": "keyword.other.unit.suffix.integer.vbi" },
+                    "5": { "name": "keyword.other.unit.user-defined.vbi" }
+                  }
+                },
+                {
+                  "match": "(\\G0[xX])([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)((?<!')([pP])(\\+?)(\\-?)((?:[0-9](?:[0-9]|(?:(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)))?((?:(?:(?:(?:(?:[uU]|[uU]ll?)|[uU]LL?)|ll?[uU]?)|LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9a-fA-FpP])\\w*)?$)",
+                  "captures": {
+                    "1": { "name": "keyword.other.unit.hexadecimal.vbi" },
+                    "2": {
+                      "name": "constant.numeric.hexadecimal.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "3": {
+                      "name": "punctuation.separator.constant.numeric.vbi"
+                    },
+                    "5": {
+                      "name": "keyword.other.unit.exponent.hexadecimal.vbi"
+                    },
+                    "6": {
+                      "name": "keyword.operator.plus.exponent.hexadecimal.vbi"
+                    },
+                    "7": {
+                      "name": "keyword.operator.minus.exponent.hexadecimal.vbi"
+                    },
+                    "8": {
+                      "name": "constant.numeric.exponent.hexadecimal.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "9": { "name": "keyword.other.unit.suffix.integer.vbi" },
+                    "10": { "name": "keyword.other.unit.user-defined.vbi" }
+                  }
+                },
+                {
+                  "match": "(\\G(?=[0-9.])(?!0[xXbB]))([0-9](?:[0-9]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)((?<!')([eE])(\\+?)(\\-?)((?:[0-9](?:[0-9]|(?:(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)))?((?:(?:(?:(?:(?:[uU]|[uU]ll?)|[uU]LL?)|ll?[uU]?)|LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9eE])\\w*)?$)",
+                  "captures": {
+                    "2": {
+                      "name": "constant.numeric.decimal.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "3": {
+                      "name": "punctuation.separator.constant.numeric.vbi"
+                    },
+                    "5": { "name": "keyword.other.unit.exponent.decimal.vbi" },
+                    "6": {
+                      "name": "keyword.operator.plus.exponent.decimal.vbi"
+                    },
+                    "7": {
+                      "name": "keyword.operator.minus.exponent.decimal.vbi"
+                    },
+                    "8": {
+                      "name": "constant.numeric.exponent.decimal.vbi",
+                      "patterns": [
+                        {
+                          "match": "(?<=[0-9a-fA-F])'(?=[0-9a-fA-F])",
+                          "name": "punctuation.separator.constant.numeric.vbi"
+                        }
+                      ]
+                    },
+                    "9": { "name": "keyword.other.unit.suffix.integer.vbi" },
+                    "10": { "name": "keyword.other.unit.user-defined.vbi" }
+                  }
+                },
+                {
+                  "match": "(?:(?:[0-9a-zA-Z_\\.]|')|(?<=[eEpP])[+-])+",
+                  "name": "invalid.illegal.constant.numeric.vbi"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+
+    "operator": {
+      "match": "\\s+(==|\\+=|<=|>=|=>|<>|<|>|\\+|-|=)\\s",
+      "name": "keyword.operator.comparison.vbi",
+      "comment": "OPERATORS"
+    },
+
+    "semicolon": {
+      "match": ";",
+      "name": "punctuation.terminator.statement.vbi"
+    },
+
+    "comma": {
+      "match": ",",
+      "name": "punctuation.separator.delimiter.comma.vbi"
+    },
+
+    "assignment_operator": {
+      "match": "\\=",
+      "name": "keyword.operator.assignment.vbi"
+    },
+
+    "square_brackets": {
+      "name": "meta.bracket.square.access.vbi",
+      "begin": "([a-zA-Z_][a-zA-Z_0-9]*|(?<=[\\]\\)]))?(\\[)(?!\\])",
+      "beginCaptures": {
+        "1": { "name": "variable.other.object.vbi" },
+        "2": { "name": "punctuation.definition.begin.bracket.square.vbi" }
+      },
+      "end": "\\]|(?=\\\\end\\{minted\\})",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.end.bracket.square.vbi" }
+      }
+    },
+
+    "empty_square_brackets": {
+      "name": "storage.modifier.array.bracket.square.vbi",
+      "match": "(?-mix:(?-mix:(?<!delete))\\\\[\\\\s*\\\\])"
+    },
+
+    "block": {
+      "name": "meta.block.vbi",
+      "begin": "^(if|for|while)",
+      "beginCaptures": {
+        "1": { "name": "punctuation.section.block.begin.bracket.curly.vbi" }
+      },
+      "end": "(?=\\s*#\\s*(?:elif|else|endif|NEXT)\\b))|(?=\\\\end\\{minted\\}",
+      "endCaptures": {
+        "1": { "name": "punctuation.section.block.end.bracket.curly.vbi" }
+      }
+    },
+
+    "unready-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {},
+
+    "END-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {}
+  }
+}

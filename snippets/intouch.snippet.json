@@ -1,0 +1,55 @@
+{
+  "Boolean": {
+    "prefix": "dimb#",
+    "body": ["Dim bol${1:varName} As Discrete;"],
+    "description": "Boolean declaration"
+  },
+  "Integer": {
+    "prefix": "dimi#",
+    "body": ["Dim int${1:varName} As Integer;"],
+    "description": "Integer declaration"
+  },
+  "String": {
+    "prefix": "dims#",
+    "body": ["Dim str${1:varName} As Message;"],
+    "description": "String declaration"
+  },
+  "If": {
+    "prefix": "ife#",
+    "body": ["If ${1:expression} Then", "\t", "Else", "\t", "EndIf;"],
+    "description": "If Else code block"
+  },
+  "If2": {
+    "prefix": "if#",
+    "body": ["If ${1:expression} Then", "\t", "EndIf;"],
+    "description": "If ElseIf Else code block"
+  },
+  "for": {
+    "prefix": "for#",
+    "body": [
+      "",
+      "DIM i AS INTEGER;",
+      "FOR i=0 TO 30 STEP 2",
+      "\t",
+      "NEXT;",
+      ""
+    ],
+    "description": "FOR-NEXT code block"
+  },
+  "Log": {
+    "prefix": "log#",
+    "body": ["LogMessage(\"text:\" + ${1:varName});"],
+    "description": "LogMessage()"
+  },
+  "codeblock": {
+    "prefix": "comment#",
+    "body": [
+      "{------------------------------------------------------------------------------}",
+      "\t",
+      "\t",
+      "\t",
+      "{<------------------------------------------------------------------------------}"
+    ],
+    "description": "add new folding code block"
+  }
+}
