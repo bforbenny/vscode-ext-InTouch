@@ -2,7 +2,7 @@
   "name": "vscode-intouch",
   "displayName": "Intouch-Language and Formatter for VSCode",
   "description": "Intouch-Language syntax highlighting, formatter and code snippets for VSCode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "images/logo.png",
   "publisher": "BforBenny",
   "engines": {
@@ -63,64 +63,7 @@
     "configuration": {
       "type": "object",
       "title": "VSCode-Intouch",
-      "properties": {
-        "VBI.formatter.EmptyLine.allowedNumberOfEmptyLines": {
-          "type": "number",
-          "default": 1,
-          "minimum": 0,
-          "maximum": 100,
-          "markdownDescription": "Number of allowed consecutive empty lines (0-100)."
-        },
-        "VBI.formatter.EmptyLine.RemoveEmptyLines": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Delete empty lines."
-        },
-        "VBI.formatter.EmptyLine.EmptyLinesAlsoInComment": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Delete empty lines in comments also."
-        },
-        "VBI.formatter.FormatAlsoInComment": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Allow format in comments."
-        },
-        "VBI.formatter.BC.BlockCodeBegin": {
-          "type": "string",
-          "default": "{>",
-          "minLength": 2,
-          "maxLength": 10,
-          "markdownDescription": "Begin Codeblock."
-        },
-        "VBI.formatter.BC.BlockCodeEnd": {
-          "type": "string",
-          "default": "{<",
-          "markdownDescription": "End Codeblock."
-        },
-        "VBI.formatter.BC.BlockCodeExclude": {
-          "type": "string",
-          "default": "{#",
-          "markdownDescription": "Turn this comment line back (exclude from Nesting)."
-        },
-        "VBI.formatter.Region.BlockCodeBegin": {
-          "type": "string",
-          "default": "{region",
-          "minLength": 2,
-          "maxLength": 10,
-          "markdownDescription": "Begin Codeblock."
-        },
-        "VBI.formatter.Region.BlockCodeEnd": {
-          "type": "string",
-          "default": "{endregion",
-          "markdownDescription": "End Codeblock."
-        },
-        "VBI.formatter.Region.BlockCodeExclude": {
-          "type": "string",
-          "default": "{#",
-          "markdownDescription": "Turn this comment line back (exclude from Nesting)."
-        }
-      }
+      "properties": {}
     }
   },
   "scripts": {

@@ -2,7 +2,7 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011"
     xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Language="en-US" Id="vscode-ext-intouch" Version="1.0.0" Publisher="BforBenny" />
+        <Identity Language="en-US" Id="vscode-ext-intouch" Version="1.0.1" Publisher="BforBenny" />
         <DisplayName>VSCode Formatter extension for InTouch</DisplayName>
         <Description xml:space="preserve">Intouch-Language syntax highlighting, formatter and code snippets for VSCode</Description>
         <Tags>
