@@ -60,10 +60,6 @@ npm list -g --depth=0
 
 > Save your code as `.vi` or `.vbi` for automatic language recognition
 
-## Change Log
-
-[Change Log](./ChangeLog.md) are available [here](./ChangeLog.md)
-
 ## Credits
 
 - https://github.com/vitalyruhl/intouch-language
