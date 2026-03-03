@@ -67,10 +67,7 @@
     }
   },
   "scripts": {
-    "publish-patch": "vsce package",
-    "publish-minor": "vsce package",
-    "publish-major": "vsce package",
-    "publish": "vsce package"
+    "package": "vsce package"
   },
   "devDependencies": {
     "@vscode/vsce": "^2.24.0",
