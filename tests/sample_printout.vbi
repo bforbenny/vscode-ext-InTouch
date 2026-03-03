@@ -1,0 +1,142 @@
+Printed On: 3/03/26 9:45 AM
+
+Window Report for ReactorControl
+
+================================================================================
+
+Object Type: Button
+Object Name: btn_StartReactor
+Link: Touch Pushbutton
+
+Application Script:
+
+  Comment: Fires once when the application starts. Initialises all tags.
+
+  DIM bolInit AS Discrete;
+  bolInit = False;
+
+  IF NOT bolInit THEN
+      LogMessage("Application started at: " + $DateTime);
+      bolInit = True;
+  ENDIF;
+
+================================================================================
+
+Object Type: Slider
+Object Name: sld_TemperatureSetpoint
+
+Data Change Script: Reactor1.Temperature
+
+  Comment: Runs each time the Temperature tag value changes.
+
+  DIM realTemp AS Real;
+  DIM strAlert AS Message;
+
+  realTemp = Reactor1.Temperature.Value;
+
+  IF realTemp > 120.0 THEN
+      strAlert = "CRITICAL high temperature: " + StringFromReal(realTemp, "%6.1f");
+      LogMessage(strAlert);
+      MessageBox(strAlert, 1);
+      almAckTag("Reactor1.Temperature");
+  ELSEIF realTemp > 80.0 THEN
+      LogMessage("WARNING: Temperature rising - " + StringFromReal(realTemp, "%6.1f") + " " + Reactor1.Temperature.EngUnits);
+  ENDIF;
+
+================================================================================
+
+Object Type: Text
+Object Name: txt_StatusDisplay
+
+Condition Script: $AccessLevel >= 2
+
+  Comment: Shows maintenance panel only when operator has sufficient access.
+
+  IF $AccessLevel >= 2 THEN
+      Show("MaintenancePanel");
+      LogMessage("Maintenance access granted for: " + $Operator);
+  ELSE
+      Hide("MaintenancePanel");
+  ENDIF;
+
+================================================================================
+
+Object Type: Symbol
+Object Name: sym_AlarmIndicator
+
+Script on while Reactor1.AlarmActive == True
+
+  Comment: Pulses the alarm indicator while the alarm condition persists.
+
+  DIM bolFlash AS Discrete;
+
+  bolFlash = NOT bolFlash;
+
+  IF bolFlash THEN
+      SetPropertyD("sym_AlarmIndicator", "Visible", True);
+  ELSE
+      SetPropertyD("sym_AlarmIndicator", "Visible", False);
+  ENDIF;
+
+================================================================================
+
+Object Type: Trend
+Object Name: trn_ReactorTrend
+
+  Comment: Historical trend for reactor temperature and setpoint.
+
+  #Trend1.DisplayMode = 0;
+  #Trend1.ChartLength = 3600;
+  #Trend1.MinRange    = 0.0;
+  #Trend1.MaxRange    = 200.0;
+  HTUpdateToCurrentTime("Trend1");
+
+================================================================================
+
+Object Type: ActiveX
+Object Name: axSQL_Logger
+
+ActiveX Script: OnDataReady
+
+  Comment: Logs process data to SQL database on each scan cycle.
+
+  DIM bolConn   AS Discrete;
+  DIM strConn   AS Message;
+  DIM intResult AS Integer;
+
+  strConn = "DSN=ProcessDB;UID=logger;PWD=log123;";
+  bolConn = SQLConnect("LogDB", strConn);
+
+  IF bolConn THEN
+      SQLInsert("LogDB", "ProcessLog", "TagName, Value, Timestamp",
+                "'Reactor1.Temperature', " +
+                StringFromReal(Reactor1.Temperature.Value, "%8.3f") + ", " +
+                "'" + $DateTime + "'");
+      SQLDisconnect("LogDB");
+  ELSE
+      LogMessage("ERROR: Cannot connect to SQL - " + SQLErrorMsg("LogDB"));
+  ENDIF;
+
+================================================================================
+
+Object Type: Button
+Object Name: btn_RecipeSave
+
+QuickFunction Script: SaveCurrentRecipe
+
+  Comment: Saves active recipe parameters to disk.
+
+  DIM strRecipeName AS Message;
+  DIM intResult     AS Integer;
+
+  strRecipeName = "Batch_" + StringFromIntg($Day, 10) + "_" + StringFromIntg($Month, 10);
+
+  intResult = RecipeSave(strRecipeName, "ReactorRecipeUnit");
+
+  IF intResult == 0 THEN
+      LogMessage("Recipe saved: " + strRecipeName);
+  ELSE
+      LogMessage("ERROR saving recipe: " + strRecipeName);
+  ENDIF;
+
+================================================================================

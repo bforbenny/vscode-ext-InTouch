@@ -3,6 +3,7 @@
 VSCode Formatter extension for InTouch is an open-source VSCode (**not official**), providing:
 
 - Syntax Highlighting
+- Code Folding
 - Snippets
 
 ## Installation
@@ -24,20 +25,20 @@ npm i
 - Click on `...` or `More actions`
 - Choose `Install from VSIX...`
 
-## Buiding
+## Building
 
 ```powershell
 # Make sure node is installed
 node -v
 
-# Install vcse
-npm install -g @vscode/vcse
+# Install vsce
+npm install -g @vscode/vsce
 
-# Check if VCSE is installed
+# Check if vsce is installed
 npm list -g --depth=0
 
 # Build VSIX
-~\AppData\Romaing\npm\vcse package
+~\AppData\Roaming\npm\vsce package
 ```
 
 ## Snippets
@@ -60,6 +61,8 @@ npm list -g --depth=0
 > Change `plaintext` to `intouch` for manual language switching
 
 > Type in any snippet and press enter
+
+> Code folding is supported for `IF/ENDIF`, `WHILE/ENDWHILE`, and `FOR/NEXT` blocks
 
 ## Credits
 

@@ -5,7 +5,7 @@
   "scopeName": "source.vbi",
   "comment": "Modified from the original Scott Spences (VSCode VBA) [https://github.com/spences10/vscode-vba#syntax-highlighting] and (OCL) [https://github.com/martinring/vscode-ocl]",
   "foldingStartMarker": "(?i:(THEN|while|For|{region|(^\\s*//\\s*#?region\\b))(\\s*.*$|\\b))",
-  "foldingStopMarker": "(?i:({endregion|endif;|(^\\s*//\\s*#?endregion\\b))(\\s*.*$|\\b))",
+  "foldingStopMarker": "(?i:({endregion|endif|endwhile|(^\\s*//\\s*#?endregion\\b))(\\s*.*$|\\b))",
   "patterns": [
     { "include": "#comments" },
     { "include": "#keywords" },
@@ -37,7 +37,7 @@
           "comment": "Intouch Variablentypes"
         },
         {
-          "match": "(?i:\\b(AS|IF|ENDIF|ELSE|WHILE|FOR|NEXT|DIM|THEN|EXIT|EACH|STEP|IN|RETURN|CALL)\\b)",
+          "match": "(?i:\\b(AS|IF|ENDIF|ELSE|ELSEIF|WHILE|ENDWHILE|FOR|NEXT|DIM|THEN|EXIT|DO|EACH|STEP|IN|RETURN|CALL|WEND)\\b)",
           "name": "keyword",
           "comment": "vbi Regular Keywords"
         },
@@ -205,10 +205,8 @@
     "comments": {
       "patterns": [
         { "include": "#line_comment_curly" },
-        { "include": "#block_comment" },
         { "include": "#line_comment_new" },
-        { "include": "#line_comment_printout" },
-        { "include": "#line_comment" }
+        { "include": "#line_comment_printout" }
       ]
     },
     "line_comment_curly": {

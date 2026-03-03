@@ -1,0 +1,364 @@
+{==============================================================================}
+{ sample.vbi — Comprehensive syntax preview for vscode-intouch extension     }
+{ Tests all token categories: keywords, types, functions, operators, dotfields}
+{==============================================================================}
+
+' ============================================================
+' SECTION 1: Variable Declarations (keyword.datatype)
+' ============================================================
+
+{region Variable Declarations}
+
+DIM bolRunning      AS Discrete;
+DIM bolAlarmActive  AS Discrete;
+DIM intCounter      AS Integer;
+DIM intMax          AS Integer;
+DIM realTemperature AS Real;
+DIM realSetpoint    AS Real;
+DIM strMessage      AS Message;
+DIM strFilePath     AS Message;
+
+{endregion}
+
+
+' ============================================================
+' SECTION 2: Constants & Assignment (keyword.constant)
+' ============================================================
+
+bolRunning     = True;
+bolAlarmActive = False;
+intCounter     = 0;
+realSetpoint   = 100.0;
+strMessage     = NULL;
+
+
+' ============================================================
+' SECTION 3: Number Literals (constant.numeric)
+' ============================================================
+
+' Integer
+intMax = 32767;
+
+' Decimal / Real
+realTemperature = 3.14159;
+
+' Hex
+intCounter = 0xFF;
+
+' Negative
+realSetpoint = -273.15;
+
+
+' ============================================================
+' SECTION 4: String Literals (string.quoted.double)
+' ============================================================
+
+strMessage  = "Hello, InTouch World!";
+strFilePath = "C:\InTouch\Data\export.csv";
+LogMessage("Startup: " + strMessage);
+
+
+' ============================================================
+' SECTION 5: Operators (keyword.operator / keyword.control)
+' ============================================================
+
+' Comparison & logical
+IF (realTemperature >= realSetpoint) AND (NOT bolAlarmActive) THEN
+    bolAlarmActive = True;
+ENDIF;
+
+' Arithmetic / bitwise
+intCounter = (intCounter + 1) MOD 100;
+intCounter = intCounter SHL 2;
+intCounter = intCounter SHR 1;
+
+' Other comparison forms
+IF intCounter <> 0 THEN
+    intCounter = intCounter - 1;
+ENDIF;
+
+IF intCounter == 0 OR bolRunning == False THEN
+    EXIT;
+ENDIF;
+
+
+' ============================================================
+' SECTION 6: Control Flow (keyword)
+' ============================================================
+
+{region IF-ELSEIF-ELSE-ENDIF}
+
+IF realTemperature > 120.0 THEN
+    strMessage = "CRITICAL: Over-temperature!";
+    LogMessage("Alarm: " + strMessage);
+ELSEIF realTemperature > 80.0 THEN
+    strMessage = "WARNING: High temperature";
+ELSEIF realTemperature > 50.0 THEN
+    strMessage = "NORMAL: Temperature in range";
+ELSE
+    strMessage = "LOW: Temperature below setpoint";
+ENDIF;
+
+{endregion}
+
+
+{region FOR-STEP-NEXT}
+
+DIM i AS Integer;
+FOR i = 0 TO 10 STEP 2
+    intCounter = intCounter + i;
+    LogMessage("Counter: " + StringFromIntg(intCounter, 10));
+NEXT;
+
+{endregion}
+
+
+{region WHILE-DO-ENDWHILE}
+
+WHILE intCounter > 0 DO
+    intCounter = intCounter - 1;
+    IF intCounter == 5 THEN
+        EXIT;
+    ENDIF;
+ENDWHILE;
+
+{endregion}
+
+
+' ============================================================
+' SECTION 7: Math Functions (keyword / keyword.function)
+' ============================================================
+
+//region Math Functions
+
+realTemperature = Abs(realTemperature);
+realTemperature = Round(realTemperature, 2);
+realTemperature = Sqrt(realTemperature);
+realTemperature = Sin(realTemperature);
+realTemperature = Cos(realTemperature);
+realTemperature = Tan(realTemperature);
+realTemperature = Log(realTemperature);
+realTemperature = Exp(realTemperature);
+realTemperature = Trunc(realTemperature);
+intCounter      = Int(realTemperature);
+realTemperature = Pi();
+
+//endregion
+
+
+' ============================================================
+' SECTION 8: String Functions (keyword.function)
+' ============================================================
+
+{region String Functions}
+
+DIM intLen  AS Integer;
+DIM strUpper AS Message;
+DIM strSub  AS Message;
+
+intLen   = StringLen(strMessage);
+strUpper = StringUpper(strMessage);
+strSub   = StringMid(strMessage, 1, 5);
+strMessage = StringReplace(strMessage, "Hello", "Hi");
+strMessage = StringTrim(strMessage);
+strMessage = StringLeft(strMessage, 10);
+strMessage = StringRight(strMessage, 5);
+realTemperature = StringToReal(strMessage);
+intCounter = StringToIntg(strMessage);
+strMessage = StringFromReal(realTemperature, "%8.2f");
+strMessage = StringFromIntg(intCounter, 10);
+strMessage = StringUpper(strMessage);
+strMessage = StringLower(strMessage);
+
+IF StringCompare(strMessage, "OK") == 0 THEN
+    LogMessage("Match found");
+ENDIF;
+
+IF StringTest(strMessage, "IsNumber") THEN
+    realTemperature = StringToReal(strMessage);
+ENDIF;
+
+intCounter = StringInString(1, strMessage, "alarm");
+
+{endregion}
+
+
+' ============================================================
+' SECTION 9: System & UI Functions (keyword.function / markup.heading)
+' ============================================================
+
+{region System Functions}
+
+IF TagExists("Reactor1.Temperature") THEN
+    LogMessage("Tag found: Reactor1.Temperature = " + strMessage);
+ENDIF;
+
+MessageBox("Process complete. Check logs.", 1);
+PlaySound("C:\Sounds\alarm.wav", 0);
+Show("AlarmWindow");
+Hide("StatusBar");
+
+DIM strNode AS Message;
+strNode = GetNodeName();
+LogMessage("Running on node: " + strNode);
+
+{endregion}
+
+
+' ============================================================
+' SECTION 10: System Variables — $ prefix (variable.parameter.dotfield.vbi)
+' ============================================================
+
+{region System Variables}
+
+DIM strUser    AS Message;
+DIM intAccess  AS Integer;
+DIM strDate    AS Message;
+
+strUser   = $Operator;
+intAccess = $AccessLevel;
+strDate   = $DateTime;
+
+IF $AccessLevel >= 2 THEN
+    LogMessage("Access granted for: " + $Operator);
+ENDIF;
+
+{endregion}
+
+
+' ============================================================
+' SECTION 11: Trend Variables — # prefix (variable.parameter.trend.vbi)
+' ============================================================
+
+{region Trend Variables}
+
+#Trend1.DisplayMode  = 0;
+#Trend1.ChartLength  = 3600;
+#Trend1.MinRange     = 0.0;
+#Trend1.MaxRange     = 200.0;
+HTUpdateToCurrentTime("Trend1");
+
+{endregion}
+
+
+' ============================================================
+' SECTION 12: Dotfields (variable.parameter.vbi)
+' ============================================================
+
+{region Dotfields}
+
+' Tag property access
+DIM strTagName    AS Message;
+DIM strEU         AS Message;
+DIM strRef        AS Message;
+DIM strAlarmNote  AS Message;
+DIM realTagVal    AS Real;
+
+strTagName   = Reactor1.Temperature.Name;
+realTagVal   = Reactor1.Temperature.Value;
+strEU        = Reactor1.Temperature.EngUnits;
+strAlarmNote = Reactor1.Temperature.AlarmComment;
+strRef       = Reactor1.Temperature.Reference;
+
+Reactor1.Temperature.Comment = "Main reactor temperature sensor";
+
+{endregion}
+
+
+' ============================================================
+' SECTION 13: SQL Functions & SQL Dotfields (keyword.function / variable.parameter.vbi)
+' ============================================================
+
+{region SQL Operations}
+
+DIM bolSQL     AS Discrete;
+DIM strConnStr AS Message;
+DIM strSQL     AS Message;
+DIM intRows    AS Integer;
+
+strConnStr = "DSN=ProductionDB;UID=sa;PWD=secret;";
+
+bolSQL = SQLConnect("DBConn1", strConnStr);
+
+IF bolSQL THEN
+    SQLSetStatement("DBConn1", "SELECT TagName, Value, Timestamp FROM ProcessData WHERE TagName='Reactor1.Temperature'");
+    SQLSelect("DBConn1", "ResultSet1", "TagName, Value, Timestamp", "");
+
+    intRows = SQLNumRows("ResultSet1");
+    LogMessage("Rows returned: " + StringFromIntg(intRows, 10));
+
+    SQLFirst("ResultSet1");
+    WHILE NOT EOF DO
+        LogMessage("Value: " + ResultSet1.GetRowColumnValue("Value"));
+        SQLNext("ResultSet1");
+    ENDWHILE;
+
+    SQLDisconnect("DBConn1");
+ENDIF;
+
+{endregion}
+
+
+' ============================================================
+' SECTION 14: Alarm Functions (keyword.function)
+' ============================================================
+
+{region Alarm Operations}
+
+almAckAll(0);
+almSelectGroup("ReactorAlarms");
+almQuery("ReactorAlarms", 1, 999, "");
+almAckGroup("ReactorAlarms");
+almSuppressGroup("ReactorAlarms");
+almUnsuppressAll(0);
+
+{endregion}
+
+
+' ============================================================
+' SECTION 15: File Functions (markup.heading / keyword.function)
+' ============================================================
+
+{region File Operations}
+
+DIM strLine AS Message;
+
+FileWriteMessage(strFilePath, "Log entry: " + $DateTime, 1);
+FileReadMessage(strFilePath, strLine, 1);
+LogMessage("Read: " + strLine);
+
+IF InfoFile(strFilePath) <> "" THEN
+    FileCopy(strFilePath, strFilePath + ".bak");
+    FileDelete(strFilePath + ".old");
+ENDIF;
+
+{endregion}
+
+
+' ============================================================
+' SECTION 16: Custom/Hermes Variables (variable.other / keyword.other)
+' ============================================================
+
+{region Hermes / Custom Variables}
+
+DIM intSysState  AS Integer;
+DIM realMaVal    AS Real;
+
+intSysState = SYS_SystemState;
+realMaVal   = MA_ReactorSetpoint;
+intCounter  = SMEL_BatchCounter;
+strMessage  = HER_StatusText;
+
+{endregion}
+
+
+' ============================================================
+' SECTION 17: XOR operator edge case
+' ============================================================
+
+bolRunning = bolRunning XOR bolAlarmActive;
+
+
+' ============================================================
+' End of sample.vbi
+' ============================================================
