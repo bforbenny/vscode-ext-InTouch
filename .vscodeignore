@@ -1,0 +1,6 @@
+.github/**
+tests/**
+syntaxes/schema.json
+.gitignore
+.vscodeignore
+*.vsix

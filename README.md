@@ -41,6 +41,14 @@ npm list -g --depth=0
 ~\AppData\Roaming\npm\vsce package
 ```
 
+or 
+
+```powershell
+# After Github commit and Github push
+git tag v1.1.0
+git push origin v1.1.0
+```
+
 ## Snippets
 
 | Snippet  | Description           |

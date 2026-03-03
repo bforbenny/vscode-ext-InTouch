@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*.*.*'
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -30,6 +33,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ steps.vsix.outputs.file }}
-          body_path: CHANGELOG.md
+          body_path: changelog.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
